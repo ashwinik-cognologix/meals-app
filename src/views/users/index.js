@@ -10,7 +10,7 @@ const SamplePage = () => {
 
     useEffect(() => {
         getRegisterUsers().then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             setUsers(response.data);
         });
     }, []);
