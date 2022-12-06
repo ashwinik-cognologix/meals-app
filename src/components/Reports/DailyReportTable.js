@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
+import { Box } from '@mui/system';
 
 const columns = [
     { id: 'id', label: 'No.', minWidth: 100 },
@@ -36,11 +37,12 @@ export default function DailyReportTable(props) {
     const [orders, setOrder] = React.useState(props.data);
 
     const [rows, setRow] = React.useState([]);
+    const [totalAmount, setTotalAmount] = React.useState(0);
 
     React.useEffect(() => {
         let newRow = [];
         let totalOrders = orders.length;
-        console.log('orders', orders);
+        let amount = 0;
         orders.map((order, index) => {
             let obj;
             // eslint-disable-next-line react/prop-types
@@ -52,6 +54,7 @@ export default function DailyReportTable(props) {
                     order.attributes.amount,
                     convertDate(order.attributes.createdAt)
                 );
+                amount = amount + Number(order.attributes.amount);
             } else {
                 obj = createData(
                     totalOrders,
@@ -60,6 +63,7 @@ export default function DailyReportTable(props) {
                     order.attributes.price,
                     convertDate(order.attributes.createdAt)
                 );
+                amount = amount + Number(order.attributes.price);
             }
 
             totalOrders = totalOrders - 1;
@@ -67,6 +71,7 @@ export default function DailyReportTable(props) {
 
             return true;
         });
+        setTotalAmount(amount);
         setRow(newRow.reverse());
     }, []);
 
@@ -113,6 +118,9 @@ export default function DailyReportTable(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Box mt={2}>
+                <h2>Total: ${totalAmount}</h2>
+            </Box>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
