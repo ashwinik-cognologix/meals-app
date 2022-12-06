@@ -35,6 +35,10 @@ const MainRoutes = {
             element: <DashboardDefault />
         },
         {
+            path: '/free',
+            element: <DashboardDefault />
+        },
+        {
             path: 'dashboard',
             children: [
                 {
