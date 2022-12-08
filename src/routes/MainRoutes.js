@@ -23,6 +23,8 @@ const AddMeal = Loadable(lazy(() => import('views/meals/add-meal')));
 const ViewOrderDetails = Loadable(lazy(() => import('views/orders/view-details')));
 const DailyReport = Loadable(lazy(() => import('views/reports/daily-report')));
 const MontlyReport = Loadable(lazy(() => import('views/reports/monthly-report')));
+const Coupons = Loadable(lazy(() => import('views/coupons')));
+const AddCoupon = Loadable(lazy(() => import('views/coupons/add-coupon')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -123,6 +125,14 @@ const MainRoutes = {
         {
             path: 'monthly-report',
             element: <MontlyReport />
+        },
+        {
+            path: 'coupons',
+            element: <Coupons />
+        },
+        {
+            path: 'add-coupon/:id',
+            element: <AddCoupon />
         }
     ]
 };

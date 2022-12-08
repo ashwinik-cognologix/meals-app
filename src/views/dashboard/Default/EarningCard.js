@@ -11,12 +11,12 @@ import SkeletonEarningCard from 'ui-component/cards/Skeleton/EarningCard';
 
 // assets
 import EarningIcon from 'assets/images/icons/earning.svg';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
-import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
-import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
-import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
+// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+// import GetAppTwoToneIcon from '@mui/icons-material/GetAppOutlined';
+// import FileCopyTwoToneIcon from '@mui/icons-material/FileCopyOutlined';
+// import PictureAsPdfTwoToneIcon from '@mui/icons-material/PictureAsPdfOutlined';
+// import ArchiveTwoToneIcon from '@mui/icons-material/ArchiveOutlined';
 
 const CardWrapper = styled(MainCard)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.dark,
@@ -56,7 +56,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 
-const EarningCard = ({ isLoading, count, title }) => {
+const EarningCard = ({ isLoading, count, title, setActiveTab }) => {
     const theme = useTheme();
 
     return (
@@ -65,7 +65,13 @@ const EarningCard = ({ isLoading, count, title }) => {
                 <SkeletonEarningCard />
             ) : (
                 <>
-                    <CardWrapper border={false} content={false}>
+                    <CardWrapper
+                        border={false}
+                        content={false}
+                        onClick={() => {
+                            setActiveTab(title);
+                        }}
+                    >
                         <Box sx={{ p: 2.25 }}>
                             <Grid container direction="column">
                                 <Grid item>
