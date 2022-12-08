@@ -191,3 +191,35 @@ export const getRegisterUsers = () => {
         return response.data;
     });
 };
+
+export const getCouponCode = () => {
+    let url = `${baseURL}/couponcodes`;
+
+    return axios.get(url).then((response) => {
+        return response.data;
+    });
+};
+
+export const addCouponCode = (coupon) => {
+    let url = `${baseURL}/couponcodes`;
+
+    return axios.post(url, { data: coupon }).then((response) => {
+        return response.data;
+    });
+};
+
+export const getCouponCodeDetails = (id) => {
+    let url = `${baseURL}/couponcodes?filters[id][$eq]=${id}`;
+
+    return axios.get(url).then((response) => {
+        return response.data;
+    });
+};
+
+export const updateCouponCode = (id, coupon) => {
+    let url = `${baseURL}/couponcodes/${id}`;
+
+    return axios.put(url, { data: coupon }).then((response) => {
+        return response.data;
+    });
+};

@@ -42,6 +42,14 @@ const dashboard = {
             url: '/orders',
             icon: icons.IconUsers,
             breadcrumbs: false
+        },
+        {
+            id: 'coupon',
+            title: 'Coupon',
+            type: 'item',
+            url: '/coupons',
+            icon: icons.IconUsers,
+            breadcrumbs: false
         }
     ]
 };

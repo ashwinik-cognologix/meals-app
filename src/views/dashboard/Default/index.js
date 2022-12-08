@@ -9,6 +9,10 @@ import TotalOrderLineChartCard from './TotalOrderLineChartCard';
 
 import { gridSpacing } from 'store/constant';
 import { getOrder, getRegisterUsers } from 'services/productservice';
+import Orders from 'views/orders';
+import { Box } from '@mui/system';
+import Earning from 'views/reports/monthly-report';
+import Users from 'views/users';
 
 // ==============================|| DEFAULT DASHBOARD ||============================== //
 
@@ -17,6 +21,7 @@ const Dashboard = () => {
     const [totalUsers, setUsers] = useState('');
     const [isLoading, setLoading] = useState(true);
     const [earning, setEarning] = useState(0);
+    const [tab, setTab] = useState('Total Orders');
     useEffect(() => {
         setLoading(true);
         getOrder().then((response) => {
@@ -36,22 +41,36 @@ const Dashboard = () => {
         });
     }, []);
 
+    const setActiveTab = (value) => {
+        setTab(value);
+    };
+
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
+                {tab}
                 <Grid container spacing={gridSpacing}>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <EarningCard isLoading={isLoading} count={totalOrder} title={'Total Orders'} />
+                        <EarningCard isLoading={isLoading} count={totalOrder} title={'Total Orders'} setActiveTab={setActiveTab} />
                     </Grid>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <EarningCard isLoading={isLoading} count={earning} title={'Total Earning'} />
+                        <EarningCard isLoading={isLoading} count={earning} title={'Total Earning'} setActiveTab={setActiveTab} />
                     </Grid>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <EarningCard isLoading={isLoading} count={totalUsers} title={'Total Users'} />
+                        <EarningCard isLoading={isLoading} count={totalUsers} title={'Total Users'} setActiveTab={setActiveTab} />
                     </Grid>
                     {/* <Grid item lg={4} md={6} sm={6} xs={12}>
                         <TotalOrderLineChartCard isLoading={isLoading} />
                     </Grid> */}
+                </Grid>
+                <Grid container spacing={gridSpacing}>
+                    <Grid item xs={12}>
+                        <Box mt={3}>
+                            {tab == 'Total Orders' ? <Orders /> : ''}
+                            {tab == 'Total Users' ? <Users /> : ''}
+                            {tab == 'Total Earning' ? <Earning /> : ''}
+                        </Box>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>
