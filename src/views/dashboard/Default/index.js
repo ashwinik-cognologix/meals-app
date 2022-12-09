@@ -48,7 +48,6 @@ const Dashboard = () => {
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
-                {tab}
                 <Grid container spacing={gridSpacing}>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
                         <EarningCard isLoading={isLoading} count={totalOrder} title={'Total Orders'} setActiveTab={setActiveTab} />
