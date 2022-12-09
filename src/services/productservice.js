@@ -193,7 +193,7 @@ export const getRegisterUsers = () => {
 };
 
 export const getCouponCode = () => {
-    let url = `${baseURL}/couponcodes`;
+    let url = `${baseURL}/couponcodes?filters[isActive][$eq]=${'true'}`;
 
     return axios.get(url).then((response) => {
         return response.data;
